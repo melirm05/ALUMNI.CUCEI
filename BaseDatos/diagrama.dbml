@@ -1,0 +1,61 @@
+Table cliente {
+  id_cliente     integer  [pk, increment]
+  documento      varchar  [not null, unique]
+  nombre         varchar  [not null]
+  apellidos      varchar  [not null]
+  correo         varchar  [not null, unique]
+  telefono       varchar
+  fecha_registro date     [not null]
+}
+
+Table empleado {
+  id_empleado integer [pk, increment]
+  nombre      varchar [not null]
+  apellidos   varchar [not null]
+  puesto      varchar [not null]
+  correo      varchar [not null, unique]
+}
+
+Table tipo_habitacion {
+  id_tipo      integer  [pk, increment]
+  nombre       varchar  [not null, unique]
+  descripcion  varchar
+  capacidad    smallint [not null]
+  precio_noche decimal  [not null]
+}
+
+Table habitacion {
+  id_habitacion integer  [pk, increment]
+  numero        varchar  [not null, unique]
+  id_tipo       integer  [not null, ref: > tipo_habitacion.id_tipo]
+  piso          smallint [not null]
+  estado        varchar  [not null]
+}
+
+Table reservacion {
+  id_reservacion    integer [pk, increment]
+  id_cliente        integer [not null, ref: > cliente.id_cliente]
+  id_empleado       integer [not null, ref: > empleado.id_empleado]
+  fecha_reservacion date    [not null]
+  fecha_entrada     date    [not null]
+  fecha_salida      date    [not null]
+  estado            varchar [not null]
+}
+
+Table reservacion_habitacion {
+  id_reservacion integer [ref: > reservacion.id_reservacion]
+  id_habitacion  integer [ref: > habitacion.id_habitacion]
+  precio_noche   decimal [not null]
+
+  indexes {
+    (id_reservacion, id_habitacion) [pk]
+  }
+}
+
+Table pago {
+  id_pago        integer [pk, increment]
+  id_reservacion integer [not null, ref: > reservacion.id_reservacion]
+  monto          decimal [not null]
+  fecha_pago     date    [not null]
+  metodo         varchar [not null]
+}

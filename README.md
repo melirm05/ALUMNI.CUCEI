@@ -1,1 +1,1 @@
-# Sistema de Gestión de Hotel
+# ALUMNI BOLSA DE TRABAJO Y SEGUIMIENTO DE EGRESADOS

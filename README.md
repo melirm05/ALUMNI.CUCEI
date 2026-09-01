@@ -1,1 +1,3 @@
-# ALUMNI BOLSA DE TRABAJO Y SEGUIMIENTO DE EGRESADOS
+# ALUMNI 
+
+- Sistema de bolsa de trabajo y seguimiento de egresados con PostgreSQL.
